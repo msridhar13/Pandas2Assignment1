@@ -1,0 +1,30 @@
+#drop or remove unname columns
+df.drop("Unnamed: 0",1)
+
+distirbution of male and female born by states4
+
+
+##show the distribution of Male/Female
+
+malefemaleDisti = df.groupby(['Gender'])
+for Gender in malefemaleDisti:
+    print(Gender)
+
+#show the top 5 most preferred names
+
+df_top_freq = df.groupby(['Name'])['Gender'].agg(
+    {"code_count": len}).sort_values(
+    "code_count", ascending=False).head(5).reset_index()
+print(df_top_freq)
+
+
+#What is the median name occurence in the dataframe
+df['Name'][df['Count'].median()]
+
+
+#5#Distribution of male and female born count by states
+grouped = df.groupby(['Gender', 'State',"Count"])
+for State, Gender in grouped:
+    print(State)
+    print(Gender)
+    print(Count)
